@@ -5,7 +5,6 @@ using UnityEngine;
 public class BallMove : MonoBehaviour {
 
     private bool canJump = false;
-    private float health = 100;
 
     // movement variables
     public float force;
@@ -46,10 +45,6 @@ public class BallMove : MonoBehaviour {
 
         // JUMP
         Jump();
-
-        // HEALTH
-        health = health - rb.velocity.magnitude * 0.01f;
-        Debug.Log(health);
 
     }
 
@@ -144,7 +139,7 @@ public class BallMove : MonoBehaviour {
     void OnCollisionEnter(Collision colEnter)
     {
 
-        health = health - rb.velocity.magnitude * 0.5f;
+        //health = health - rb.velocity.magnitude * 0.8f;
 
         if (colEnter.collider.CompareTag("Ground") || colEnter.collider.CompareTag("Platform"))
         {
@@ -168,7 +163,7 @@ public class BallMove : MonoBehaviour {
         if (colTriger.CompareTag("Bucket"))
         {
             Destroy(colTriger.gameObject);
-            health = health + 20;
+            //health = health + 20;
         }
     }
 
