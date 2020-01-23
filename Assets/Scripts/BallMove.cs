@@ -47,6 +47,7 @@ public class BallMove : MonoBehaviour {
         // JUMP
         Jump();
 
+        // HEALTH
         health = health - rb.velocity.magnitude * 0.01f;
         Debug.Log(health);
 
@@ -138,28 +139,36 @@ public class BallMove : MonoBehaviour {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
-    void OnCollisionEnter(Collision collisionInfo)
+
+    // Check collision Enter
+    void OnCollisionEnter(Collision colEnter)
     {
 
         health = health - rb.velocity.magnitude * 0.5f;
 
-        if (collisionInfo.collider.CompareTag("Ground") || collisionInfo.collider.CompareTag("Platform"))
+        if (colEnter.collider.CompareTag("Ground") || colEnter.collider.CompareTag("Platform"))
         {
             
             canJump = true;
         }
 
-        if (collisionInfo.collider.CompareTag("Can")) {
-            Destroy(collisionInfo.gameObject);
-            health = health + 20;
+        
+    }
+
+    void OnCollisionExit (Collision colExit)
+    {
+        if (colExit.collider.CompareTag("Ground") || colExit.collider.CompareTag("Platform"))
+        {
+            canJump = false;
         }
     }
 
-    void OnCollisionExit (Collision collisionInfo)
+    private void OnTriggerEnter(Collider colTriger)
     {
-        if (collisionInfo.collider.CompareTag("Ground") || collisionInfo.collider.CompareTag("Platform"))
+        if (colTriger.CompareTag("Bucket"))
         {
-            canJump = false;
+            Destroy(colTriger.gameObject);
+            health = health + 20;
         }
     }
 
