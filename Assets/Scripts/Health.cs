@@ -4,15 +4,11 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
 
+    // Set Variables
     public Rigidbody player;
     public Text healthTxt;
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        healthTxt.text = Singletons.instance.pHealth.ToString();
-    }
 
     void FixedUpdate()
     {
@@ -20,7 +16,8 @@ public class Health : MonoBehaviour
         // Lose health while moving
         Singletons.instance.pHealth -= player.velocity.magnitude * 0.01f;
 
-        Debug.Log(Singletons.instance.pHealth);
+        // Change Health text value
+        healthTxt.text = Singletons.instance.pHealth.ToString();
 
     }
 }

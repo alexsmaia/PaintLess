@@ -1,12 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMove : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
-    private bool canJump = false;
-
-    // movement variables
+    // Movement variables
     public float force;
     private bool isMoving = false;
     public float jumpForce;
@@ -18,7 +16,7 @@ public class BallMove : MonoBehaviour {
 
     public AudioClip clip;
 
-	private Coroutine co;
+    private Coroutine co;
 
 
     public void Awake()
@@ -27,82 +25,72 @@ public class BallMove : MonoBehaviour {
     }
 
     // Start is called before the first frame update
-    void Start() {
-
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
         audioSource.loop = true;
         audioSource.clip = clip;
-
-        //audioSource.PlayOneShot
-
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // MOVEMENT
-        MoveSphere();
-
+        MovePlayer();
         // JUMP
         Jump();
-
     }
 
-    private void MoveSphere() {
+    // Move Function
+    private void MovePlayer()
+    {
 
-        // get the Axis value of the virtual buttons
+        // Get the Axis value of input buttons
         float hor = Input.GetAxis("Horizontal");
-
-        // setup a translation (direction) for the movement
+        // Setup a translation for the movement
         translation = new Vector3(0, 0, hor);
 
-        // In this case, since we're constantly updating the force of the object its best to use "ForceMode.Force", which applies a continous force on our object
+        // Applies a continous force on Player Movement
         rb.AddForce(translation * force, ForceMode.Force);
 
-		//Debug.Log(rb.velocity.magnitude);
-
-
-        //audioSource.volume = rb.velocity.normalized.magnitude;
-
+        // Check if Moving
         if (rb.velocity.magnitude != 0)
         {
             isMoving = true;
-
+            // Set sound Movement by the movement magnitude
             audioSource.volume = Remap(rb.velocity.magnitude, 0.2f, 3.5f, 0, 1);
-            //Debug.Log(audioSource.volume);
-
+            // Check if audio is playing
             if (!audioSource.isPlaying)
-			{
-				audioSource.Play();
-			}
-		}
-		else if(isMoving && rb.velocity.magnitude < 0.2f)
-        {
-			isMoving = false;
-
-			if (co != null)
-				StopCoroutine(co);
-
-			co = StartCoroutine(WaitForAudioToEnd());
+            {
+                audioSource.Play();
+            }
         }
-       
+        else if (isMoving && rb.velocity.magnitude < 0.2f)
+        {
+            isMoving = false;
+
+            if (co != null)
+                StopCoroutine(co);
+
+            co = StartCoroutine(WaitForAudioToEnd());
+        }
+
 
     }
 
-    private void Jump() {
+    // Jump Function
+    private void Jump()
+    {
 
-        // first, we check if our object is touching the ground.
-
-        if (canJump)
+        // Check if can Jump
+        if (Singletons.instance.canJump)
         {
-            //if (transform.position.y <= 1.2f) {
-
-            // if it is, then we can jump (we're using the virtual button "Shoot" still, because its key is the spacebar)
-            if (Input.GetButtonDown("Jump")) {
+            // Jump
+            if (Input.GetButtonDown("Jump"))
+            {
                 // once we jump, we add a force vertically
                 rb.velocity = Vector3.up * jumpForce;
 
-                //audioSource.Stop();
             }
         }
     }
@@ -126,45 +114,13 @@ public class BallMove : MonoBehaviour {
         // we can stop the sound
         audioSource.Stop();
 
-		co = null;
-	}
+        co = null;
+    }
 
+    // Remap Function
     public float Remap(float value, float from1, float to1, float from2, float to2)
     {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
-    }
-
-
-    // Check collision Enter
-    void OnCollisionEnter(Collision colEnter)
-    {
-
-        //health = health - rb.velocity.magnitude * 0.8f;
-
-        if (colEnter.collider.CompareTag("Ground") || colEnter.collider.CompareTag("Platform"))
-        {
-            
-            canJump = true;
-        }
-
-        
-    }
-
-    void OnCollisionExit (Collision colExit)
-    {
-        if (colExit.collider.CompareTag("Ground") || colExit.collider.CompareTag("Platform"))
-        {
-            canJump = false;
-        }
-    }
-
-    private void OnTriggerEnter(Collider colTriger)
-    {
-        if (colTriger.CompareTag("Bucket"))
-        {
-            Destroy(colTriger.gameObject);
-            //health = health + 20;
-        }
     }
 
 }
