@@ -15,7 +15,6 @@ public class PlayerCollision : MonoBehaviour
     }
 
 
-
     // Check Collision Enter
     void OnCollisionEnter(Collision colEnter)
     {
@@ -44,7 +43,7 @@ public class PlayerCollision : MonoBehaviour
         if (colTriger.CompareTag("Bucket"))
         {
             Destroy(colTriger.gameObject);
-            //health = health + 20;
+            Singletons.instance.pHealth += 20;
         }
     }
 

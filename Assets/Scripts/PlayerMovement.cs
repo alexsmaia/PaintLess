@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         audioSource.loop = true;
         audioSource.clip = clip;
+
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = true;
             // Set sound Movement by the movement magnitude
-            audioSource.volume = Remap(rb.velocity.magnitude, 0.2f, 3.5f, 0, 1);
+            audioSource.volume = Singletons.instance.Remap(rb.velocity.magnitude, 0.2f, 3.5f, 0, 1);
             // Check if audio is playing
             if (!audioSource.isPlaying)
             {
@@ -115,12 +116,6 @@ public class PlayerMovement : MonoBehaviour
         audioSource.Stop();
 
         co = null;
-    }
-
-    // Remap Function
-    public float Remap(float value, float from1, float to1, float from2, float to2)
-    {
-        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
 }
