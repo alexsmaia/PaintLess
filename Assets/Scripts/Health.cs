@@ -19,5 +19,11 @@ public class Health : MonoBehaviour
         // Change Health text value
         healthTxt.text = Singletons.instance.pHealth.ToString();
 
+        if(Singletons.instance.pHealth <= 0)
+        {
+            FindObjectOfType<GameManager>().GameOver();
+        }
+        
+
     }
 }
