@@ -3,16 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
+    private const float time = 0.6f;
     bool gameEnd = false;
 
     // Change Level function
     public void EndLevel()
     {
-        Invoke("nextScene", 1f);
+        Debug.Log("endlevel");
+        Invoke("nextLevel", time: time);
     }
 
-    public void nextScene()
+    public void nextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
