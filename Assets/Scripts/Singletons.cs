@@ -8,6 +8,7 @@ public class Singletons : MonoBehaviour
 
     [HideInInspector]
     public float pHealth = 100;
+    public int pScore = 0;
     public bool canJump = false;
 
     // Create Singleton when awake

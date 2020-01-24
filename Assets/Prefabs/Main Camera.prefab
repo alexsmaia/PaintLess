@@ -91,7 +91,7 @@ MonoBehaviour:
   target: {fileID: 0}
   smoothSpeed: 0.125
   offset: {x: 17, y: 4, z: 0.5}
-  cameraUp: {x: 0, y: 5, z: 0}
+  cameraUp: {x: 0, y: 3, z: 0}
 --- !u!81 &4072684256501781776
 AudioListener:
   m_ObjectHideFlags: 0
