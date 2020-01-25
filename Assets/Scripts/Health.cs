@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
 
         float scaleValue = Singletons.instance.Remap(Singletons.instance.pHealth, 0, 100, 0.4f, 2);
         transform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
-        Debug.Log(scaleValue);
+        //Debug.Log(scaleValue);
 
     }
 }

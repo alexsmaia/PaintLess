@@ -5,15 +5,23 @@ public class GameManager : MonoBehaviour
 {
     private const float time = 0.6f;
     bool gameEnd = false;
+    Singletons instance = Singletons.instance;
 
     // Change Level function
     public void EndLevel()
     {
-        Debug.Log("endlevel");
-        Invoke("nextLevel", time: time);
+        // Set score
+        instance.pScore += (int)instance.pHealth;
+        // Set full Health
+        instance.pHealth = instance.startHealth;
+
+        Debug.Log(Singletons.instance.pScore);
+
+        // Get next lvl after some time
+        Invoke("changeLevel", time: time);
     }
 
-    public void nextLevel()
+    public void changeLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 

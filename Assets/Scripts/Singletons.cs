@@ -7,9 +7,13 @@ public class Singletons : MonoBehaviour
     public static Singletons instance;
 
     [HideInInspector]
+    public int startHealth = 100;
+    public int startScore = 0;
     public float pHealth = 100;
     public int pScore = 0;
     public bool canJump = false;
+
+    public int StartScore { get => startScore; set => startScore = value; }
 
     // Create Singleton when awake
     void Awake()
