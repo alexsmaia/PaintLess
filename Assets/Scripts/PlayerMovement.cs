@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    // Movement variables
+    // Game Manager instance
     GameManager instance = GameManager.instance;
 
+    // Movement variables
     public float force;
     private bool isMoving = false;
     public float jumpForce;
