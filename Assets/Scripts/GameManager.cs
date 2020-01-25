@@ -76,8 +76,11 @@ public class GameManager : MonoBehaviour
             // Set Game Over
             gameOver = true;
             Debug.Log("game Over");
+
+            SceneManager.LoadScene("GameOver");
+            
             // Restart Game
-            Restart();
+            //Restart();
         }
 
     }

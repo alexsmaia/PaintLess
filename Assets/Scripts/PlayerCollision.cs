@@ -5,19 +5,6 @@ public class PlayerCollision : MonoBehaviour
     // Game Manager instance
     GameManager instance = GameManager.instance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     // Check Collision Enter
     void OnCollisionEnter(Collision colEnter)
     {
