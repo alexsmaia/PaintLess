@@ -21,12 +21,12 @@ public class PlayerCollision : MonoBehaviour
     // Check Collision Enter
     void OnCollisionEnter(Collision colEnter)
     {
-        //health = health - rb.velocity.magnitude * 0.8f;
 
         if (colEnter.collider.CompareTag("Ground") || colEnter.collider.CompareTag("Platform"))
         {
             // Enable Jump
             instance.canJump = true;
+
         }
     }
 
@@ -41,12 +41,27 @@ public class PlayerCollision : MonoBehaviour
     }
 
     // Check Trigger Enter
-    private void OnTriggerEnter(Collider colTriger)
+    private void OnTriggerEnter(Collider colTrigerEnter)
     {
-        if (colTriger.CompareTag("Bucket"))
+        if (colTrigerEnter.CompareTag("Bucket"))
         {
-            Destroy(colTriger.gameObject);
+            Destroy(colTrigerEnter.gameObject);
             instance.pHealth += 20;
+        }
+
+        if (colTrigerEnter.CompareTag("Water"))
+        {
+            instance.onWater = true;
+        }
+    }
+
+    // Check Trigger Exit
+    private void OnTriggerExit(Collider colTrigerExit)
+    {
+     
+        if (colTrigerExit.CompareTag("Water"))
+        {
+            instance.onWater = false;
         }
     }
 

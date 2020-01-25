@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     // GLOBAL VARIABLES
-    
     public int startHealth = 100;
     public int startScore = 0;
+    public int bucketHealth = 20;
+    public int jumpLoseHealth = 5;
     public float pHealth = 100;
     public int pScore = 0;
 
@@ -20,9 +21,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool canJump = false;
     [HideInInspector]
-    bool gameEnd = false;
+    public bool onWater = false;
     [HideInInspector]
-    bool gameOver = false;
+    public bool gameEnd = false;
+    [HideInInspector]
+    public bool gameOver = false;
+    [HideInInspector]
+    public bool jumping = false;
 
     // Create Singleton when awake
     void Awake()
