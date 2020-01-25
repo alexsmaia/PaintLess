@@ -3,10 +3,9 @@
 public class EndGameTrigger : MonoBehaviour
 {
 
-    public GameManager gameManager;
-
     private void OnTriggerEnter()
     {
-        gameManager.EndLevel();
+        GameManager.instance.EndLevel();
+        Debug.Log("end Game trigger");
     }
 }

@@ -2,6 +2,9 @@
 
 public class PlayerCollision : MonoBehaviour
 {
+    // Game Manager instance
+    GameManager instance = GameManager.instance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,7 @@ public class PlayerCollision : MonoBehaviour
         if (colEnter.collider.CompareTag("Ground") || colEnter.collider.CompareTag("Platform"))
         {
             // Enable Jump
-            Singletons.instance.canJump = true;
+            instance.canJump = true;
         }
     }
 
@@ -33,7 +36,7 @@ public class PlayerCollision : MonoBehaviour
         if (colExit.collider.CompareTag("Ground") || colExit.collider.CompareTag("Platform"))
         {
             // Disable Jump
-            Singletons.instance.canJump = false;
+            instance.canJump = false;
         }
     }
 
@@ -43,7 +46,7 @@ public class PlayerCollision : MonoBehaviour
         if (colTriger.CompareTag("Bucket"))
         {
             Destroy(colTriger.gameObject);
-            Singletons.instance.pHealth += 20;
+            instance.pHealth += 20;
         }
     }
 

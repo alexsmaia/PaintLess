@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
 
     // Movement variables
+    GameManager instance = GameManager.instance;
+
     public float force;
     private bool isMoving = false;
     public float jumpForce;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip clip;
 
     private Coroutine co;
+
 
 
     public void Awake()
@@ -59,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = true;
             // Set sound Movement by the movement magnitude
-            audioSource.volume = Singletons.instance.Remap(rb.velocity.magnitude, 0.2f, 3.5f, 0, 1);
+            audioSource.volume = instance.Remap(rb.velocity.magnitude, 0.2f, 3.5f, 0, 1);
             // Check if audio is playing
             if (!audioSource.isPlaying)
             {
@@ -84,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         // Check if can Jump
-        if (Singletons.instance.canJump)
+        if (instance.canJump)
         {
             // Jump
             if (Input.GetButtonDown("Jump"))

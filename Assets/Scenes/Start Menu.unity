@@ -3479,7 +3479,7 @@ GameObject:
   - component: {fileID: 1065659187}
   - component: {fileID: 1065659186}
   m_Layer: 0
-  m_Name: Singleton Object
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3494,10 +3494,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1065659185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a4deb9d866a4d5eadc6ff336141c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c31e7118ef7c47409251d150f12020a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHealth: 100
+  startScore: 0
   pHealth: 100
+  pScore: 0
+  canJump: 0
+  gameOver: 0
 --- !u!4 &1065659187
 Transform:
   m_ObjectHideFlags: 0

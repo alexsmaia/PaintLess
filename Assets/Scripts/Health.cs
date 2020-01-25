@@ -6,19 +6,24 @@ public class Health : MonoBehaviour
 
     // Set Variables
     public Rigidbody player;
+    GameManager instance = GameManager.instance;
 
     void FixedUpdate()
     {
 
         // Lose health while moving
-        Singletons.instance.pHealth -= player.velocity.magnitude * 0.01f;
+        instance.pHealth -= player.velocity.magnitude * 0.01f;
 
-        if(Singletons.instance.pHealth <= 0)
+        // ToDo Loose helth jump and collide
+
+        // If helth is 0 Game Over
+        if(instance.pHealth <= 0)
         {
-            FindObjectOfType<GameManager>().GameOver();
+            instance.GameOver();
         }
 
-        float scaleValue = Singletons.instance.Remap(Singletons.instance.pHealth, 0, 100, 0.4f, 2);
+        // 
+        float scaleValue = instance.Remap(instance.pHealth, 0, 100, 0.4f, 2);
         transform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
         //Debug.Log(scaleValue);
 

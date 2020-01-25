@@ -11,7 +11,10 @@ public class Singletons : MonoBehaviour
     public int startScore = 0;
     public float pHealth = 100;
     public int pScore = 0;
+    // Actions Boll Variables
     public bool canJump = false;
+    public bool gameOver = false;
+
 
     public int StartScore { get => startScore; set => startScore = value; }
 
