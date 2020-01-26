@@ -30,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        Debug.Log("resume");
     }
 
     void PauseIt()
@@ -37,16 +38,19 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        Debug.Log("pause");
     }
 
     public void GoToMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(menuStart);
+        Debug.Log("menu");
     }
 
     public void QuitGame()
     {
         Application.Quit();
+        Debug.Log("quit");
     }
 }
