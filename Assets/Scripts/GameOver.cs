@@ -17,7 +17,7 @@ public class GameOver : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        GameManager.instance.Restart();
     }
 
     public void Quit()

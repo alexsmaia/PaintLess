@@ -22,12 +22,6 @@ public class GameManager : MonoBehaviour
     public bool canJump = false;
     [HideInInspector]
     public bool onWater = false;
-    [HideInInspector]
-    public bool gameEnd = false;
-    [HideInInspector]
-    public bool gameOver = false;
-    [HideInInspector]
-    public bool jumping = false;
 
     // Create Singleton when awake
     void Awake()
@@ -42,7 +36,6 @@ public class GameManager : MonoBehaviour
         pScore += (int)pHealth;
         // Set full Health
         pHealth = startHealth;
-
 
         // Get next lvl after some time
         Invoke("changeLevel", time: time);
@@ -60,37 +53,27 @@ public class GameManager : MonoBehaviour
         else
         {
             // Finish Game no more lvls
-            gameEnd = true;
+            SceneManager.LoadScene("Victory");
         }
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
     }
-
-
 
     // Game Over funtion
     public void GameOver()
     {
-        if (!gameOver)
-        {
-            // Set Game Over
-            gameOver = true;
-            Debug.Log("game Over");
-
-            SceneManager.LoadScene("GameOver");
-            
-            // Restart Game
-            //Restart();
-        }
-
+        // Open Game Over
+        SceneManager.LoadScene("GameOver");
     }
 
     // Restart Game function
-    void Restart()
+    public void Restart()
     {
-        //SceneManager.LoadScene("GameOver");
-    }
+        // Reset Variables
+        pScore = startScore;
+        pHealth = startHealth;
+        // Satar Game Level 1
+        SceneManager.LoadScene("Level1");
 
+    }
 
     // Function create Singleton
     void MakeSingleton()
