@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PrefabShooting : MonoBehaviour
 {
-    public float speed = 1;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public float speed;
 
     // Update is called once per frame
     void Update()
     {
         transform.position += transform.forward * speed;
     }
+
+    
 }

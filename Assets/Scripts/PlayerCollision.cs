@@ -35,6 +35,11 @@ public class PlayerCollision : MonoBehaviour
             Destroy(colTrigerEnter.gameObject);
             instance.pHealth += 20;
         }
+        if (colTrigerEnter.CompareTag("Enemy"))
+        {
+            instance.pHealth = 0;
+            Debug.Log("dead");
+        }
 
         if (colTrigerEnter.CompareTag("Water"))
         {

@@ -75,8 +75,8 @@ public class Shooting : MonoBehaviour
         // this will get us a vector from the enemy towards the player
         Vector3 targetDir = player.position - transform.position;
         float dis = Vector3.Distance(player.position, transform.position);
-        Debug.Log("distancia: " + dis);
-        Debug.Log("hello");
+        //Debug.Log("distancia: " + dis);
+        
 
         // we use "Vector3.Angle" to calculate angles between vectors, 
         //in this case we calculate the angle between the enemy "transform.up" (where he is facing) and the vector that faces the player
