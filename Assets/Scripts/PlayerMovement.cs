@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float force;
     private bool isMoving = false;
     public float jumpForce;
+    public ParticleSystem Splash;
     private Vector3 translation;
 
     private Rigidbody rb;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip clip;
 
     private Coroutine co;
+
+
 
 
     public void Awake()
@@ -42,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
         // JUMP
         Jump();
+
+        SetParticle();
+
     }
 
     // Move Function
@@ -57,9 +63,11 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(translation * force, ForceMode.Force);
 
         // Check if Moving
-        if (rb.velocity.magnitude != 0)
+        if (rb.velocity.magnitude >= 0.2f)
         {
+
             isMoving = true;
+          
             // Set sound Movement by the movement magnitude
             audioSource.volume = instance.Remap(rb.velocity.magnitude, 0.2f, 3.5f, 0, 1);
             // Check if audio is playing
@@ -68,10 +76,10 @@ public class PlayerMovement : MonoBehaviour
                 audioSource.Play();
             }
         }
-        else if (isMoving && rb.velocity.magnitude < 0.2f)
+        else if (isMoving && rb.velocity.magnitude <= 0.2f)
         {
             isMoving = false;
-
+            
             if (co != null)
                 StopCoroutine(co);
 
@@ -95,6 +103,24 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector3.up * jumpForce;
 
             }
+        }
+    }
+
+
+    private void SetParticle()
+    {
+        if (isMoving)
+        {
+            if (!Splash.isPlaying)
+            {
+                // Ative Particle
+                Splash.Play();
+            }
+        }
+        else
+        {
+            // Stop Particle
+            Splash.Stop();
         }
     }
 
