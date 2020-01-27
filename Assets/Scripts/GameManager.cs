@@ -32,10 +32,9 @@ public class GameManager : MonoBehaviour
     // End Level Function
     public void EndLevel()
     {
+
         // Set score
         pScore += (int)pHealth;
-        // Set full Health
-        pHealth = startHealth;
 
         // Get next lvl after some time
         Invoke("changeLevel", time: time);
@@ -49,6 +48,9 @@ public class GameManager : MonoBehaviour
         {
             // Next Level
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            // Set full Health
+            pHealth = startHealth;
         }
         else
         {
